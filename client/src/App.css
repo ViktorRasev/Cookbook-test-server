@@ -4,11 +4,12 @@ html {
 .App {
   background-color: rgba(235, 235, 235, 0.808);
 }
-.card {
+ .card {
   width: 80%;
   margin: 2rem auto;
-  padding: 0;
-}
+  padding: 0; 
+} 
+
 
 .single-meal {
   display: flex;
@@ -28,4 +29,21 @@ html {
   padding: 1rem;
   max-width: 1200px;
   font-size: large;
+}
+
+.single-meal-small { 
+  display: grid;
+grid-column: auto;
+width: 80%;
+}
+
+.title-small { 
+
+}
+.food-image-small { 
+
+}
+
+.description-small { 
+  color: red;
 }

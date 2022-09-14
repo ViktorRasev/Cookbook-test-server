@@ -133,7 +133,49 @@ const recipeList = [
       },
     ],
     id: "1ae20af4cfa8efc4",
-  },
+  }, {
+    "name": "Skořicové hranolky z chleba",
+    "description": "Zbylý chleba nakrájejte na malé hranoly. Smíchejte rozkvedlaná vajíčka s mlékem a solí. Chleba obalte ve vajíčku a nechte ho trochu nasáknout. Na pánvi rozehřejte polovinu másla a postupně chleba ze všech stran dozlatova osmahněte. Ještě teplé hranolky obalte ve skořicovém cukru (cukr krupice smíchaný se skořicí) a naservírujte na talířku nebo v hezkém hrnečku. Skořicové hranolky můžete také ve zjednodušené podobě upéct v troubě. V tom případě přelijte rozpuštěné máslo přes pokrájené hranolky ze staršího chleba a důkladně rukama promíchejte. Zasypte je cukrem se skořicí a opět promíchejte tak, aby se cukr rovnoměrně distribuoval po celém povrchu chleba. Pečte na 180 °C dozlatova, přibližně 5 až 10 minut. Po vytažení z trouby je můžete ještě extra zasypat trochou skořice.",
+    "imgUri": "https://zachranjidlo.cz/wp-content/uploads/sh7a0274-1-1024x527-1200x500-c-default.jpg",
+    "ingredients": [
+      {
+        "id": "1eadc60f4d5bf8bf",
+        "amount": 4,
+        "unit": "plátky"
+      },
+      {
+        "id": "7e85150c34fd62eb",
+        "amount": 2,
+        "unit": "ks"
+      },
+      {
+        "id": "2ffb380763c16c97",
+        "amount": 60,
+        "unit": "ml"
+      },
+      {
+        "id": "34109b1b210e32ed",
+        "amount": 30,
+        "unit": "g"
+      },
+      {
+        "id": "3f702872fb8e99f8",
+        "amount": 1,
+        "unit": "špetka"
+      },
+      {
+        "id": "ea32fb839257568d",
+        "amount": 1,
+        "unit": "lžička"
+      },
+      {
+        "id": "6740ae2c9acfa794",
+        "amount": 2,
+        "unit": "lžíce"
+      }
+    ],
+    "id": "e6a2450d6d6cd747"
+  }
 ];
 
 function App() {

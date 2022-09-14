@@ -1,14 +1,15 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
+// import "../App.css";
 
 function Recipe(props) {
   return (
-    <Card>
-      <Card.Body style={{ padding: 0 }}>
-        <div className="single-meal">
-          <img className="meal-img" src={props.recipe.imgUri} alt="recipe result"></img>
-          <h1 className="title">{props.recipe.name} </h1>
-          <p className="description">{props.recipe.description} </p>
+    <Card className={props.isLarge ? 'card' : 'card-small'}>
+      <Card.Body>
+        <div className={props.isLarge ? 'single-meal' : 'single-meal-small'}>
+          <img className={props.isLarge ? 'food-image' : 'food-image-small'} src={props.recipe.imgUri} alt="recipe result"></img>
+          <h1 className={props.isLarge ? 'title' : 'title-small'}>{props.recipe.name} </h1>
+          <p className={props.isLarge ? 'description' : 'description-small'}>{props.recipe.description} </p>
         </div>
       </Card.Body>
     </Card>
@@ -16,3 +17,4 @@ function Recipe(props) {
 }
 
 export default Recipe;
+
