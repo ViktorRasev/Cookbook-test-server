@@ -9,7 +9,6 @@ import Form from "react-bootstrap/Form";
 import Icon from "@mdi/react";
 import { mdiTable, mdiViewGridOutline, mdiMagnify } from "@mdi/js";
 
-
 function RecipeList(props) {
   const [viewType, setViewType] = useState("grid");
   const isGrid = viewType === "grid";
@@ -88,17 +87,18 @@ function RecipeList(props) {
                 >
                   {isLarge ? "Velký detail" : "Malý detail"}
                 </Button>
-              ) : (
-                null
-              )}
+              ) : null}
             </Form>
           </div>
         </div>
       </Navbar>
 
-       {isGrid ? (
-        <RecipeGridList isLargeProp={isLarge} recipeList={filteredRecipeList} />
-
+      {isGrid ? (
+        <RecipeGridList
+          isLargeProp={isLarge}
+          recipeList={filteredRecipeList}
+          allIngredients={props.allIngredients}
+        />
       ) : (
         <RecipeTableList recipeList={filteredRecipeList} />
       )}

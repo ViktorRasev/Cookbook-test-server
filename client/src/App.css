@@ -4,12 +4,16 @@ html {
 .App {
   background-color: rgba(235, 235, 235, 0.808);
 }
- .card {
-  width: 80%;
-  margin: 2rem auto;
-  padding: 0; 
-} 
 
+.table {
+  max-width: fit-content;
+  margin: 50px;
+}
+
+.card {
+  min-height: 300px;
+  margin: 1rem 0;
+}
 
 .single-meal {
   display: flex;
@@ -23,27 +27,16 @@ html {
 }
 
 .title {
-  padding: 1rem 1rem 0 1rem;
+  padding: 1rem;
+  font-size: 1.2rem;
+}
+
+.title-small {
+  font-size: 2rem;
+  padding: 0.5rem;
 }
 .description {
   padding: 1rem;
   max-width: 1200px;
   font-size: large;
-}
-
-.single-meal-small { 
-  display: grid;
-grid-column: auto;
-width: 80%;
-}
-
-.title-small { 
-
-}
-.food-image-small { 
-
-}
-
-.description-small { 
-  color: red;
 }
