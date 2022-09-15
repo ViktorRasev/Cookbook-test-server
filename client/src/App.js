@@ -29,8 +29,6 @@ function App() {
     });
   }, []);
 
-
-
   useEffect(() => {
     fetch(`http://localhost:3000/ingredient/list`, {
       method: "GET",
