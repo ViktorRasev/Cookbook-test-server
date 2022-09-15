@@ -73,7 +73,7 @@ function App() {
     } else if (isError) {
       return (
         <div cookbook={styles.error}>
-          <div>Nepodařilo se načíst data o třídě.</div>
+          <div>Recepty se nepodařilo načíst!</div>
           <br />
           <pre>{JSON.stringify(cookbookLoadCall.error, null, 2)}</pre>
         </div>
