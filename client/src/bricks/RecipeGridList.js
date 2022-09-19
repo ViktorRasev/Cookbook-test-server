@@ -3,15 +3,17 @@ import Recipe from "./Recipe";
 import "../App.css";
 
 function RecipeGridList(props) {
-  // console.log(props.allIngredients)
+
+  const recipeList = props.recipeList
+
   return (
     <div class="row">
-      {props.recipeList.map((recipe) => {
+      {recipeList.map((recipe) => {
         return (
           <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
             <Recipe
               isLarge={props.isLargeProp}
-              key={recipe.name}
+              key={recipe.id}
               recipe={recipe}
               allIngredients={props.allIngredients}
             />

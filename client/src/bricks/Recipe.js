@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
-// import IngredientList from "./IngredientList";
-// import "../App.css";
+import CreateNewRecipeModal from "./CreateNewRecipeModal";
 
 function matchIngredients(ingredientsInRecepies, ingredientsAll) {
   return ingredientsInRecepies.map((oneIngredient) => {
@@ -16,6 +15,7 @@ function Recipe(props) {
     props.recipe.ingredients,
     props.allIngredients
   );
+  const [recipeData, setRecipeData] = useState(props.recipe);
 
   return (
     <Card>
@@ -28,6 +28,10 @@ function Recipe(props) {
           ></img>
           <h1 className={props.isLarge ? "title" : "title-small"}>
             {props.recipe.name}{" "}
+            <CreateNewRecipeModal
+              allIngredients={props.allIngredients}
+              recipe={recipeData}
+            />
           </h1>
           <Card.Text>
             {props.isLarge ? (

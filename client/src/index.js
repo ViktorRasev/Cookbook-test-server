@@ -4,24 +4,27 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import Home from "./routes/Home";
-import RecipeDetail from "./routes/RecipeDetail";
-import RecipeList from "./routes/RecipeList";
-import IngredientList from "./routes/IngredientList";
+import HomeRoute from "./routes/HomeRoute";
+import RecipeDetailRoute from "./routes/RecipeDetailRoute";
+import RecipeListRoute from "./routes/RecipeListRoute";
+import IngredientListRoute from "./routes/IngredientListRoute";
+import { UserProvider } from "./UserProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <UserProvider>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route path="" element={<Home />} />
-          <Route path="recipeDetail" element={<RecipeDetail />} />
-          <Route path="recipeList" element={<RecipeList />} />
-          <Route path="IngredientList" element={<IngredientList />} />
+          <Route path="" element={<HomeRoute />} />
+          <Route path="recipeDetail" element={<RecipeDetailRoute />} />
+          <Route path="recipeList" element={<RecipeListRoute />} />
+          <Route path="IngredientList" element={<IngredientListRoute />} />
         </Route>
       </Routes>
     </BrowserRouter>
+    </UserProvider>
   </React.StrictMode>
 );
 

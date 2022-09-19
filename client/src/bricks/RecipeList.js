@@ -5,6 +5,7 @@ import "../App.css";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import CreateNewRecipeModal from "./CreateNewRecipeModal";
 
 import Icon from "@mdi/react";
 import { mdiTable, mdiViewGridOutline, mdiMagnify } from "@mdi/js";
@@ -18,10 +19,8 @@ function RecipeList(props) {
 
   const [searchBy, setSearchBy] = useState("");
 
-  console.log("viewType: ", viewType);
 
   const filteredRecipeList = useMemo(() => {
-    console.log("recipeListFiltered");
     return props.recipeList.filter((item) => {
       return (
         item.name.toLocaleLowerCase().includes(searchBy.toLocaleLowerCase()) ||
@@ -41,9 +40,12 @@ function RecipeList(props) {
     if (!event.target.value) setSearchBy("");
   }
 
+  // console.log(props.recipeList)
+
+
   return (
     <div>
-      <Navbar bg="light">
+      <Navbar bg="light" >
         <div className="container-fluid">
           <Navbar.Brand>Seznam receptů</Navbar.Brand>
           <div>
@@ -88,6 +90,11 @@ function RecipeList(props) {
                   {isLarge ? "Velký detail" : "Malý detail"}
                 </Button>
               ) : null}
+              <CreateNewRecipeModal 
+                allIngredients={props.allIngredients}
+                // recipeList={props.recipeList}
+                onComplete={props.onComplete}
+              />
             </Form>
           </div>
         </div>

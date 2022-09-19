@@ -1,20 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./App.css";
-import RecipeList from "./bricks/RecipeList";
-import "bootstrap/dist/css/bootstrap.min.css";
-// import { Outlet, useNavigate } from "react-router-dom";
 
+
+import "bootstrap/dist/css/bootstrap.min.css";
 import Icon from "@mdi/react";
-import { mdiLoading } from "@mdi/js";
-import styles from "./css/classroom.module.css";
+import { mdiLoading, mdiAlertOctagonOutline } from "@mdi/js";
+import UserContext from "./UserProvider";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import Container from "react-bootstrap/Container";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Outlet, useNavigate } from "react-router-dom";
+import { NavLink } from "react-bootstrap";
 
 function App() {
+  const { isAuthorized } = useContext(UserContext);
   const [cookbookLoadCall, setCookbookLoadCall] = useState({
     state: "pending",
   });
-  const [ingredientsLoadCall, setIngredientsLoadCall] = useState({
-    state: "pending",
-  });
+
+  let navigate = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:3000/recipe/list`, {
@@ -29,51 +36,41 @@ function App() {
     });
   }, []);
 
-  useEffect(() => {
-    fetch(`http://localhost:3000/ingredient/list`, {
-      method: "GET",
-    }).then(async (response) => {
-      const responseJson = await response.json();
-      if (response.status >= 400) {
-        setIngredientsLoadCall({ state: "error", error: responseJson });
-      } else {
-        setIngredientsLoadCall({ state: "success", data: responseJson });
-      }
-    });
-  }, []);
-
-  function getChild() {
-    const isPending =
-      cookbookLoadCall.state === "pending" ||
-      ingredientsLoadCall.state === "pending";
-    const isLoaded =
-      cookbookLoadCall.state === "success" ||
-      ingredientsLoadCall.state === "success";
-    const isError =
-      cookbookLoadCall.state === "error" ||
-      ingredientsLoadCall.state === "error";
+  function getRecipesListDropdown() {
+        const isPending = cookbookLoadCall.state === "pending";
+    const isLoaded = cookbookLoadCall.state === "success";
+    const isError = cookbookLoadCall.state === "error";
 
     if (isPending) {
       return (
-        <div className={styles.loading}>
-          <Icon size={2} path={mdiLoading} spin={true} />
-        </div>
+        <Nav.Link disabled={true}>
+          <Icon size={2} path={mdiLoading} spin={true} /> Recipes List
+        </Nav.Link>
       );
     } else if (isLoaded) {
       return (
         <>
-          <RecipeList
-            recipeList={cookbookLoadCall.data}
-            allIngredients={ingredientsLoadCall.data}
-          />
+          <NavLink>{isAuthorized ? "Přihlášen" : "Nepřihlášen"}</NavLink>
+          <NavDropdown title="Select Recipe" id="navbarScrollingDropdown">
+            {cookbookLoadCall.data.map((singleRecipe) => {
+              return (
+                <NavDropdown.Item
+                  key={singleRecipe.id}
+                  onClick={() =>
+                    navigate("/recipeDetail?id=" + singleRecipe.id)
+                  }
+                >
+                  {singleRecipe.name}
+                </NavDropdown.Item>
+              );
+            })}
+          </NavDropdown>
         </>
       );
     } else if (isError) {
       return (
-        <div cookbook={styles.error}>
-          <div>Recepty se nepodařilo načíst!</div>
-          <br />
-          <pre>{JSON.stringify(cookbookLoadCall.error, null, 2)}</pre>
+        <div>
+          <Icon size={1} path={mdiAlertOctagonOutline} /> Error
         </div>
       );
     } else {
@@ -81,7 +78,41 @@ function App() {
     }
   }
 
-  return <div className="App">{getChild()}</div>;
+  return (
+    <div className="App">
+      <Navbar
+        fixed="top"
+        expand={"sm"}
+        className="mb-3"
+        bg="light"
+        variant="light"
+      >
+        <Container fluid>
+          <Navbar.Brand onClick={() => navigate("/")}>Kucharka</Navbar.Brand>
+          <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-sm`} />
+          <Navbar.Offcanvas id={`offcanvasNavbar-expand-sm`}>
+            <Offcanvas.Header closeButton>
+              <Offcanvas.Title id={`offcanvasNavbarLabel-expand-sm`}>
+                Simple School
+              </Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+              <Nav className="justify-content-end flex-grow-1 pe-3">
+                {getRecipesListDropdown()}
+                <Nav.Link onClick={() => navigate("/recipeList")}>
+                  Recepty
+                </Nav.Link>
+                <Nav.Link onClick={() => navigate("/ingredientList")}>
+                  Ingredience
+                </Nav.Link>
+              </Nav>
+            </Offcanvas.Body>
+          </Navbar.Offcanvas>
+        </Container>
+      </Navbar>
+      <Outlet />
+    </div>
+  );
 }
 
 export default App;
