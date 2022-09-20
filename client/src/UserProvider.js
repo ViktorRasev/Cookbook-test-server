@@ -5,7 +5,7 @@ const UserContext = createContext();
 export function UserProvider({ children }) {
 
      const value = {
-         isAuthorized: false,
+         isAuthorized: true,
         }
         
     return (

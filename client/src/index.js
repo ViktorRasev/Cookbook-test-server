@@ -14,16 +14,16 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <UserProvider>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route path="" element={<HomeRoute />} />
-          <Route path="recipeDetail" element={<RecipeDetailRoute />} />
-          <Route path="recipeList" element={<RecipeListRoute />} />
-          <Route path="IngredientList" element={<IngredientListRoute />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route path="" element={<HomeRoute />} />
+            <Route path="recipeDetail" element={<RecipeDetailRoute />} />
+            <Route path="recipeList" element={<RecipeListRoute />} />
+            <Route path="IngredientList" element={<IngredientListRoute />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </UserProvider>
   </React.StrictMode>
 );

@@ -2,16 +2,18 @@ import Icon from "@mdi/react";
 import "../App.css";
 import { mdiPlus, mdiLoading, mdiPencilOutline } from "@mdi/js";
 import { useState, useEffect, useContext } from "react";
+import UserContext from "../UserProvider";
 import { Button, Modal, Form, Col, Row } from "react-bootstrap";
 
 function CreateNewRecipeModal(props) {
+  const { isAuthorized } = useContext(UserContext);
   const onComplete = props.onComplete;
   const [isModalShown, setIsModalShown] = useState(false);
   const [validated, setValidated] = useState(false);
   const [addRecipeCall, setAddRecipeCall] = useState({
     state: "inactive",
   });
-
+console.log(isAuthorized)
   const defaultForm = {
     name: "",
     description: "",
@@ -201,7 +203,7 @@ function CreateNewRecipeModal(props) {
       </Modal>
 
       {props.recipe ? (
-        <Button
+       isAuthorized && <Button
           style={{ cursor: "pointer", float: "right", height: "2.7rem" }}
           onClick={() => handleShowModal()}
         >
@@ -209,19 +211,20 @@ function CreateNewRecipeModal(props) {
         </Button>
       ) : (
         <Button
+           disabled={!isAuthorized}
           className="add-recipe-btn"
           onClick={() => handleShowModal()}
           variant="outline-primary"
           style={{
             margin: "0 8px",
-            background: "green",
+            background: isAuthorized ? "green" : "grey",
             color: "white",
             border: "none",
           }}
         >
           <Icon
             path={mdiPlus}
-            style={{ background: "green", cursor: "pointer" }}
+            style={{ cursor: "pointer" }}
             size={1}
           />
           Pridat recept

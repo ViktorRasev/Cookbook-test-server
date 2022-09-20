@@ -45,7 +45,7 @@ function RecipeList(props) {
 
   return (
     <div>
-      <Navbar bg="light" >
+      <Navbar bg="light">
         <div className="container-fluid">
           <Navbar.Brand>Seznam receptů</Navbar.Brand>
           <div>
@@ -92,7 +92,6 @@ function RecipeList(props) {
               ) : null}
               <CreateNewRecipeModal 
                 allIngredients={props.allIngredients}
-                // recipeList={props.recipeList}
                 onComplete={props.onComplete}
               />
             </Form>
