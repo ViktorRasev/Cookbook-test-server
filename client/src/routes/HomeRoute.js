@@ -7,6 +7,12 @@ function Home() {
     <div>TODO Home</div>;
     <div>TODO Home</div>;
     <div>TODO Home</div>;
+    <div>TODO Home</div>;
+    <div>TODO Home</div>;
+    <div>TODO Home</div>;
+    <div>TODO Home</div>;
+    <div>TODO Home</div>;
+    <div>TODO Home</div>;
     </>
     )
   }
